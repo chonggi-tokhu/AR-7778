@@ -25,10 +25,12 @@ AR7778.prototype = {
         this.currKeys[notename] = null;
     },
     playButton(buttonidx) {
-        console.log((this.config.semitone_up ? this.notes1 : this.notes0)[buttonidx]);
-        this.playNote((this.config.semitone_up ? this.notes1 : this.notes0)[buttonidx]);
+        var notes = (this.config.semitone_up ? this.notes1 : this.notes0);
+        console.log((this.config.semitone_up ? this.notes1 : this.notes0));
+        console.log(buttonidx);
+        this.playNote(notes[buttonidx]);
         setTimeout(() => {
-            this.stopNote((this.config.semitone_up ? this.notes1 : this.notes0)[buttonidx]);
+            this.stopNote(notes[buttonidx]);
         }, this.config.length);
     },
     setConfig({ length, semitone_up } = { length: null, semitone_up: null }) {
