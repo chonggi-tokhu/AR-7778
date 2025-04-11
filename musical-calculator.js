@@ -25,6 +25,7 @@ AR7778.prototype = {
         this.currKeys[notename] = null;
     },
     playButton(buttonidx) {
+        console.log((this.config.semitone_up ? this.notes1 : this.notes0)[buttonidx]);
         this.playNote((this.config.semitone_up ? this.notes1 : this.notes0)[buttonidx]);
         setTimeout(() => {
             this.stopNote((this.config.semitone_up ? this.notes1 : this.notes0)[buttonidx]);
