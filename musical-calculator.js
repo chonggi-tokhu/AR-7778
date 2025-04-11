@@ -11,9 +11,12 @@ function AR7778({ length, semitone_up } = { length: 2000, semitone_up: false }) 
     this.config = { length, semitone_up };
 }
 AR7778.prototype = {
-    init() {
+    init(cbfunc) {
         Soundfont.instrument(ac, "AR-7778").then((instrument) => {
             this.instrument = instrument;
+            if (typeof cbfunc === 'function') {
+                cbfunc(instrument);
+            }
         });
     },
     playNote(notename) {
