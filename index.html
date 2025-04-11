@@ -160,7 +160,7 @@
         var AR7778 = window['AR7778'];
         var calculator = new AR7778({ length: 2, semitone_up: false });
         calculator.init((inst) => {
-            document.querySelectorAll(`.musical-calculator .calc-button`).forEach((el, idx, parel) => {
+            document.querySelectorAll(`.musical-calculator .calc-button span`).forEach((el, idx, parel) => {
                 el.addEventListener("click", (ev) => {
                     calculator.playButton(parseInt(el.getAttribute("data-button-idx")));
                 });
