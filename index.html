@@ -261,6 +261,9 @@
                 console.log(el);
             });
 
+        });
+        calculator_right.init((inst) => {
+
             document.querySelectorAll(`#musical-calculator-right .calc-button span`).forEach((el, idx, parel) => {
                 el.addEventListener("click", (ev) => {
                     console.log(el.getAttribute("data-button-idx"));
@@ -268,7 +271,7 @@
                 });
                 console.log(el);
             });
-        });
+        })
     </script>
 </body>
 
