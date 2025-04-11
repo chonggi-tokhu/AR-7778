@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSICAL CALCULATOR</title>
+    <script src="./player.js"></script>
+    <script src="./musical-calculator.js"></script>
+    <style>
+        .musical-calculator {
+            height: 14em;
+            background: silver;
+            width: fit-content;
+            padding: 0.5rem;
+        }
+
+        .musical-calculator tr td {
+            margin: 0.5rem;
+            border-radius: 8vmax;
+        }
+
+        .musical-calculator>div>div>div {
+            height: 1em;
+            margin: 0.1rem;
+            margin-top: 0.5em;
+            min-width: 2rem;
+        }
+
+        .musical-calculator>div>div>div>span {
+            border: 1px solid #000000;
+            border-radius: 8vmax;
+            min-width: 2rem;
+            display: block;
+            margin-top: 0.5em;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <!-- <table class="musical-calculator">
+            <tbody>
+                <tr>
+                    <td colspan="10" rowspan="2">
+                        <div contenteditable="true" style="background: #0a5f13;color:#000000">1972-11-21</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="2"><span style="background: lightgrey;color:#222222;">O</span></td>
+                    <td colspan="2"><span style="background: black;color:white;">音量</span></td>
+                    <td colspan="2"><span style="background: black;color:white;">時間</span></td>
+                    <td colspan="2"><span style="background: black;color:white;">鬧鈴</span></td>
+                    <td colspan="2"><span style="background: darkred;color:white;">AC</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span style="background: blue;color:white;">M+</span></td>
+                    <td colspan="2"><span style="background: blue;color:white;">M-</span></td>
+                    <td colspan="2"><span style="background: blue;color:white;">MRC</span></td>
+                    <td colspan="2"><span style="background: darkred;color:white;">CE</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">7</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">8</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">9</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: white;color:black;">GT</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: white;color:black;">→</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">4</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">5</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">6</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: white;color:black;">×</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: white;color:black;">÷</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">1</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">2</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">3</span></td>
+                    <td colspan="2" rowspan="4"><span style="background: white;color:black;">+</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: white;color:black;">-</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">0</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">00</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: black;color:white;">.</span></td>
+                    <td colspan="2" rowspan="2"><span style="background: white;color:black;">=</span></td>
+                </tr>
+            </tbody>
+        </table> -->
+        <div class="musical-calculator">
+            <div>
+                <div style="display: flex;">
+                    <div contenteditable="true"
+                        style="background: #0a5f13;color:#000000;width: 100%;height: 1.5em;margin-left: 0.5rem;margin-right: 0.5rem;">
+                        1972-11-21</div>
+                </div>
+                <div style="display: flex;">
+                    <div class="calc-button" style="height: 2em;"><span
+                            style="background: lightgrey;color:#222222;height: 2.4em;display: block;width: 2rem;">O</span>
+                    </div>
+                    <div class="calc-button"><span style="background: black;color:white;">音量</span></div>
+                    <div class="calc-button"><span style="background: black;color:white;">時間</span></div>
+                    <div class="calc-button"><span style="background: black;color:white;">鬧鈴</span></div>
+                    <div class="calc-button"><span style="background: darkred;color:white;">AC</span></div>
+                </div>
+                <div style="display:flex;position: relative;left: 2.2rem;">
+                    <div class="calc-button"><span style="background: blue;color:white;">M+</span></div>
+                    <div class="calc-button"><span style="background: blue;color:white;">M-</span></div>
+                    <div class="calc-button"><span style="background: blue;color:white;">MRC</span></div>
+                    <div class="calc-button"><span style="background: darkred;color:white;">CE</span></div>
+                </div>
+                <div style="display:flex;">
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="B4">7</span>
+                    </div>
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="C5">8</span>
+                    </div>
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="D5">9</span>
+                    </div>
+                    <div class="calc-button"><span style="background: white;color:black;">GT</span></div>
+                    <div class="calc-button"><span style="background: white;color:black;">→</span></div>
+                </div>
+                <div style="display:flex;">
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="F4">4</span>
+                    </div>
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="G4">5</span>
+                    </div>
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="A4">6</span>
+                    </div>
+                    <div class="calc-button"><span style="background: white;color:black;" data-button-idx="G5">×</span>
+                    </div>
+                    <div class="calc-button"><span style="background: white;color:black;" data-button-idx="A5">÷</span>
+                    </div>
+                </div>
+                <div style="display:flex;">
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="C4">1</span>
+                    </div>
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="D4">2</span>
+                    </div>
+                    <div class="calc-button"><span style="background: black;color:white;" data-button-idx="E6">3</span>
+                    </div>
+                    <div class="calc-button"><span style="background: white;color:black;position: absolute;height: 3em;"
+                            data-button-idx="E5">+</span></div>
+                    <div class="calc-button"><span style="background: white;color:black;" data-button-idx="F5">-</span>
+                    </div>
+                </div>
+                <div style="display:flex;">
+                    <div class="calc-button"><span style="background: black;color:white;">0</span></div>
+                    <div class="calc-button"><span style="background: black;color:white;">00</span></div>
+                    <div class="calc-button"><span style="background: black;color:white;">.</span></div>
+                    <div class="calc-button">__</div>
+                    <div class="calc-button"><span style="background: white;color:black;" data-button-idx="B5">=</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var AR7778 = window['AR7778'];
+        var calculator = new AR7778({ length: 2, semitone_up: false });
+        calculator.init();
+        document.querySelectorAll(`.musical-calculator .calc-button`).forEach((el, idx, parel) => {
+            el.addEventListener("click", (ev) => {
+                calculator.playButton(el.getAttribute("data-button-idx"));
+            });
+        });
+    </script>
+</body>
+
+</html>
