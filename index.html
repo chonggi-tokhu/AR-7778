@@ -162,7 +162,7 @@
         calculator.init((inst) => {
             document.querySelectorAll(`.musical-calculator .calc-button span`).forEach((el, idx, parel) => {
                 el.addEventListener("click", (ev) => {
-                    calculator.playButton(parseInt(el.getAttribute("data-button-idx")));
+                    calculator.playButton(Number(el.getAttribute("data-button-idx")));
                 });
                 console.log(el);
             });
