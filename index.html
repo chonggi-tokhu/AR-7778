@@ -14,6 +14,8 @@
             background: silver;
             width: fit-content;
             padding: 0.5rem;
+            border-radius: 6%;
+            box-shadow: 2px 2px 1px 1px #000000, -2px -2px 1px 1px #000000, 2px -2px 1px 1px #000000, -2px 2px 1px 1px #000000;
         }
 
         .musical-calculator tr td {
@@ -37,19 +39,25 @@
             text-align: center;
         }
 
-        .body {
+        .calculators {
             display: flex;
+        }
+
+        .calculators .musical-calculator {
+            margin-left: 1rem;
+            margin-top: 1em;
         }
     </style>
 </head>
 
 <body>
     <div class="body">
-        <!-- <table class="musical-calculator">
+        <div class="calculators">
+            <!-- <table class="musical-calculator">
             <tbody>
                 <tr>
                     <td colspan="10" rowspan="2">
-                        <div contenteditable="true" style="background: #0a5f13;color:#000000">1972-11-21</div>
+                        <div contenteditable="true" style="background: #1c873c;color:#000000">1972-11-21</div>
                     </td>
                 </tr>
                 <tr>
@@ -94,168 +102,177 @@
                 </tr>
             </tbody>
         </table> -->
-        <div class="musical-calculator" id="musical-calculator-left" tabindex="0">
-            <div>
-                <div style="display: flex;">
-                    <div contenteditable="true"
-                        style="background: #0a5f13;color:#000000;width: 100%;height: 1.5em;margin-left: 0.5rem;margin-right: 0.5rem;">
-                        1972-11-21</div>
-                </div>
-                <div style="display: flex;">
-                    <div class="calc-button" style="height: 2em;"><span
-                            style="background: lightgrey;color:#222222;height: 2.4em;display: block;width: 2rem;">O</span>
+            <div class="musical-calculator" id="musical-calculator-left" tabindex="0">
+                <div>
+                    <div style="display: flex;">
+                        <div contenteditable="true"
+                            style="background: #1c873c;color:#000000;width: 100%;height: 1.5em;margin-left: 0.5rem;margin-right: 0.5rem;">
+                            1972-11-21</div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;">音量</span></div>
-                    <div class="calc-button"><span style="background: black;color:white;">時間</span></div>
-                    <div class="calc-button"><span style="background: black;color:white;">鬧鈴</span></div>
-                    <div class="calc-button"><span style="background: darkred;color:white;">AC</span></div>
-                </div>
-                <div style="display:flex;position: relative;left: 2.2rem;">
-                    <div class="calc-button"><span style="background: blue;color:white;">M+</span></div>
-                    <div class="calc-button"><span style="background: blue;color:white;">M-</span></div>
-                    <div class="calc-button"><span style="background: blue;color:white;">MRC</span></div>
-                    <div class="calc-button"><span style="background: darkred;color:white;"
-                            data-button-key="CE">CE</span></div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="B4"
-                            data-button-idx="6" data-button-key="7">7</span>
+                    <div style="display: flex;">
+                        <div class="calc-button" style="height: 2em;"><span
+                                style="background: lightgrey;color:#222222;height: 2.4em;display: block;width: 2rem;">O</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;">音量</span></div>
+                        <div class="calc-button"><span style="background: black;color:white;">時間</span></div>
+                        <div class="calc-button"><span style="background: black;color:white;">鬧鈴</span></div>
+                        <div class="calc-button"><span style="background: darkred;color:white;">AC</span></div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="C5"
-                            data-button-idx="7" data-button-key="8">8</span>
+                    <div style="display:flex;position: relative;left: 2.2rem;">
+                        <div class="calc-button"><span style="background: blue;color:white;">M+</span></div>
+                        <div class="calc-button"><span style="background: blue;color:white;">M-</span></div>
+                        <div class="calc-button"><span style="background: blue;color:white;">MRC</span></div>
+                        <div class="calc-button"><span style="background: darkred;color:white;"
+                                data-button-key="CE">CE</span></div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="D5"
-                            data-button-idx="8" data-button-key="9">9</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="B4"
+                                data-button-idx="6" data-button-key="7">7</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="C5"
+                                data-button-idx="7" data-button-key="8">8</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="D5"
+                                data-button-idx="8" data-button-key="9">9</span>
+                        </div>
+                        <div class="calc-button"><span style="background: white;color:black;">GT</span></div>
+                        <div class="calc-button"><span style="background: white;color:black;">→</span></div>
                     </div>
-                    <div class="calc-button"><span style="background: white;color:black;">GT</span></div>
-                    <div class="calc-button"><span style="background: white;color:black;">→</span></div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="F4"
-                            data-button-idx="3" data-button-key="4">4</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="F4"
+                                data-button-idx="3" data-button-key="4">4</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="G4"
+                                data-button-idx="4" data-button-key="5">5</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="A4"
+                                data-button-idx="5" data-button-key="6">6</span>
+                        </div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="G5"
+                                data-button-idx="11" data-button-key="*">×</span>
+                        </div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="A5"
+                                data-button-idx="12" data-button-key="/">÷</span>
+                        </div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="G4"
-                            data-button-idx="4" data-button-key="5">5</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="C4"
+                                data-button-idx="0" data-button-key="1">1</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="D4"
+                                data-button-idx="1" data-button-key="2">2</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="E6"
+                                data-button-idx="2" data-button-key="3">3</span>
+                        </div>
+                        <div class="calc-button"><span
+                                style="background: white;color:black;position: absolute;height: 3em;"
+                                data-button-name="E5" data-button-idx="9" data-button-key="+">+</span></div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="F5"
+                                data-button-idx="10" data-button-key="-">-</span>
+                        </div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="A4"
-                            data-button-idx="5" data-button-key="6">6</span>
-                    </div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="G5"
-                            data-button-idx="11" data-button-key="*">×</span>
-                    </div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="A5"
-                            data-button-idx="12" data-button-key="/">÷</span>
-                    </div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="C4"
-                            data-button-idx="0" data-button-key="1">1</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="D4"
-                            data-button-idx="1" data-button-key="2">2</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="E6"
-                            data-button-idx="2" data-button-key="3">3</span>
-                    </div>
-                    <div class="calc-button"><span style="background: white;color:black;position: absolute;height: 3em;"
-                            data-button-name="E5" data-button-idx="9" data-button-key="+">+</span></div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="F5"
-                            data-button-idx="10" data-button-key="-">-</span>
-                    </div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-key="0">0</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-key="00">00</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-key=".">.</span>
-                    </div>
-                    <div class="calc-button">__</div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="B5"
-                            data-button-idx="13" data-button-key="=">=</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;"
+                                data-button-key="0">0</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;"
+                                data-button-key="00">00</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;"
+                                data-button-key=".">.</span>
+                        </div>
+                        <div class="calc-button">__</div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="B5"
+                                data-button-idx="13" data-button-key="=">=</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="musical-calculator" id="musical-calculator-right" tabindex="1">
-            <div>
-                <div style="display: flex;">
-                    <div contenteditable="true"
-                        style="background: #0a5f13;color:#000000;width: 100%;height: 1.5em;margin-left: 0.5rem;margin-right: 0.5rem;">
-                        1972-11-21</div>
-                </div>
-                <div style="display: flex;">
-                    <div class="calc-button" style="height: 2em;"><span
-                            style="background: lightgrey;color:#222222;height: 2.4em;display: block;width: 2rem;">O</span>
+            <div class="musical-calculator" id="musical-calculator-right" tabindex="1">
+                <div>
+                    <div style="display: flex;">
+                        <div contenteditable="true"
+                            style="background: #1c873c;color:#000000;width: 100%;height: 1.5em;margin-left: 0.5rem;margin-right: 0.5rem;">
+                            1972-11-21</div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;">音量</span></div>
-                    <div class="calc-button"><span style="background: black;color:white;">時間</span></div>
-                    <div class="calc-button"><span style="background: black;color:white;">鬧鈴</span></div>
-                    <div class="calc-button"><span style="background: darkred;color:white;">AC</span></div>
-                </div>
-                <div style="display:flex;position: relative;left: 2.2rem;">
-                    <div class="calc-button"><span style="background: blue;color:white;">M+</span></div>
-                    <div class="calc-button"><span style="background: blue;color:white;">M-</span></div>
-                    <div class="calc-button"><span style="background: blue;color:white;">MRC</span></div>
-                    <div class="calc-button"><span style="background: darkred;color:white;"
-                            data-button-key="CE">CE</span></div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="B4"
-                            data-button-idx="6" data-button-key="7">7</span>
+                    <div style="display: flex;">
+                        <div class="calc-button" style="height: 2em;"><span
+                                style="background: lightgrey;color:#222222;height: 2.4em;display: block;width: 2rem;">O</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;">音量</span></div>
+                        <div class="calc-button"><span style="background: black;color:white;">時間</span></div>
+                        <div class="calc-button"><span style="background: black;color:white;">鬧鈴</span></div>
+                        <div class="calc-button"><span style="background: darkred;color:white;">AC</span></div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="C5"
-                            data-button-idx="7" data-button-key="8">8</span>
+                    <div style="display:flex;position: relative;left: 2.2rem;">
+                        <div class="calc-button"><span style="background: blue;color:white;">M+</span></div>
+                        <div class="calc-button"><span style="background: blue;color:white;">M-</span></div>
+                        <div class="calc-button"><span style="background: blue;color:white;">MRC</span></div>
+                        <div class="calc-button"><span style="background: darkred;color:white;"
+                                data-button-key="CE">CE</span></div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="D5"
-                            data-button-idx="8" data-button-key="9">9</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="B4"
+                                data-button-idx="6" data-button-key="7">7</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="C5"
+                                data-button-idx="7" data-button-key="8">8</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="D5"
+                                data-button-idx="8" data-button-key="9">9</span>
+                        </div>
+                        <div class="calc-button"><span style="background: white;color:black;">GT</span></div>
+                        <div class="calc-button"><span style="background: white;color:black;">→</span></div>
                     </div>
-                    <div class="calc-button"><span style="background: white;color:black;">GT</span></div>
-                    <div class="calc-button"><span style="background: white;color:black;">→</span></div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="F4"
-                            data-button-idx="3" data-button-key="4">4</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="F4"
+                                data-button-idx="3" data-button-key="4">4</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="G4"
+                                data-button-idx="4" data-button-key="5">5</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="A4"
+                                data-button-idx="5" data-button-key="6">6</span>
+                        </div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="G5"
+                                data-button-idx="11" data-button-key="*">×</span>
+                        </div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="A5"
+                                data-button-idx="12" data-button-key="/">÷</span>
+                        </div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="G4"
-                            data-button-idx="4" data-button-key="5">5</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="C4"
+                                data-button-idx="0" data-button-key="1">1</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="D4"
+                                data-button-idx="1" data-button-key="2">2</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;" data-button-name="E6"
+                                data-button-idx="2" data-button-key="3">3</span>
+                        </div>
+                        <div class="calc-button"><span
+                                style="background: white;color:black;position: absolute;height: 3em;"
+                                data-button-name="E5" data-button-idx="9" data-button-key="+">+</span></div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="F5"
+                                data-button-idx="10" data-button-key="-">-</span>
+                        </div>
                     </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="A4"
-                            data-button-idx="5" data-button-key="6">6</span>
-                    </div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="G5"
-                            data-button-idx="11" data-button-key="*">×</span>
-                    </div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="A5"
-                            data-button-idx="12" data-button-key="/">÷</span>
-                    </div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="C4"
-                            data-button-idx="0" data-button-key="1">1</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="D4"
-                            data-button-idx="1" data-button-key="2">2</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-name="E6"
-                            data-button-idx="2" data-button-key="3">3</span>
-                    </div>
-                    <div class="calc-button"><span style="background: white;color:black;position: absolute;height: 3em;"
-                            data-button-name="E5" data-button-idx="9" data-button-key="+">+</span></div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="F5"
-                            data-button-idx="10" data-button-key="-">-</span>
-                    </div>
-                </div>
-                <div style="display:flex;">
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-key="0">0</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-key="00">00</span>
-                    </div>
-                    <div class="calc-button"><span style="background: black;color:white;" data-button-key=".">.</span>
-                    </div>
-                    <div class="calc-button">__</div>
-                    <div class="calc-button"><span style="background: white;color:black;" data-button-name="B5"
-                            data-button-idx="13" data-button-key="=">=</span>
+                    <div style="display:flex;">
+                        <div class="calc-button"><span style="background: black;color:white;"
+                                data-button-key="0">0</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;"
+                                data-button-key="00">00</span>
+                        </div>
+                        <div class="calc-button"><span style="background: black;color:white;"
+                                data-button-key=".">.</span>
+                        </div>
+                        <div class="calc-button">__</div>
+                        <div class="calc-button"><span style="background: white;color:black;" data-button-name="B5"
+                                data-button-idx="13" data-button-key="=">=</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -309,8 +326,29 @@
             'Shift': '*',
             'Backspace': 'CE',
         };
-        document.querySelector('#musical-calculator-left').addEventListener("keydown", (ev) => {
-            var el = document.querySelector('#musical-calculator-left').getElementsByAttrValue("data-button-key", buttons_by_key[ev.key])[0];
+
+        var buttons_by_key_right = {
+            'q': '0',
+            'w': '1',
+            'e': '2',
+            'r': '3',
+            't': '4',
+            'y': '5',
+            'u': '6',
+            'i': '7',
+            'o': '8',
+            'p': '9',
+            'a': '+',
+            's': '-',
+            'd': '/',
+            'f': '=',
+            'z': '.',
+            'x': '*',
+            'c': 'CE',
+        };
+        document.querySelector('.calculators').addEventListener("keydown", (ev) => {
+            var button = buttons_by_key[ev.key] || buttons_by_key_right[ev.key];
+            var el = (Object.keys(buttons_by_key_right).includes(ev.key) ? document.querySelector('#musical-calculator-right') : document.querySelector('#musical-calculator-left')).getElementsByAttrValue("data-button-key", button)[0];
             if (!(el instanceof HTMLElement)) {
                 return;
             }
