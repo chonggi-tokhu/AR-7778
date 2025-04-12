@@ -277,6 +277,22 @@
                 </div>
             </div>
         </div>
+        <div>
+            <p>
+            <h3>주의: 이 계산기는 계산을 할 수 없습니다. <span style="color:grey;text-decoration: line-through;">근데 정작 계산기 기능 구현보다 악기 기능
+                    구현이 더 어려움</span></h3>
+            </p>
+            <p>
+            <h3>설명서:</h3>
+            </p>
+            <p>
+
+                <span>1 2 3 4 5 6 7 8 9 + - × ÷ 순서로 C3부터 D3, E4, F4... 순서로 올라갑니다.</span>
+            </p>
+            <p>
+                <span> 오른쪽 계산기는 q w e r t y u i o p a s d f 순서로 C#3부터 D#3, F4, F#4, G#3... 순서로 올라갑니다.</span>
+            </p>
+        </div>
     </div>
     <script>
         var ColourgreyShorterJS = window['ColourgreyShorterJS'];
@@ -340,10 +356,10 @@
             'p': '9',
             'a': '+',
             's': '-',
-            'd': '/',
-            'f': '=',
-            'z': '.',
-            'x': '*',
+            'd': '*',
+            'f': '/',
+            'z': '=',
+            'x': '.',
             'c': 'CE',
         };
         document.querySelector('.calculators').addEventListener("keydown", (ev) => {
