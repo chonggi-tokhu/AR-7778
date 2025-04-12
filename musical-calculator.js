@@ -20,7 +20,7 @@ AR7778.prototype = {
         });
     },
     playNote(notename) {
-        var a = this.instrument.play(notename, 0, { duration: this.config.length });
+        var a = this.instrument.play(notename, ac.currentTime, { duration: this.config.length });
         this.currKeys[notename] = a;
     },
     stopNote(notename) {

@@ -7,6 +7,7 @@
     <title>MUSICAL CALCULATOR</title>
     <script src="https://chonggi-tokhu.github.io/files/kin_choice/new/ColourgreyShorterCSSJS-0.0.1.js"></script>
     <script src="./midi_reader.js"></script>
+    <script src="./midi_player.js"></script>
     <script src="./parsed_midi_to_json.js"></script>
     <script src="./player.js"></script>
     <script src="./musical-calculator.js"></script>
@@ -322,6 +323,7 @@
         });
         var hand = true;
         var AR7778 = window['AR7778'];
+        var MidiPlayer = window['MidiPlayer'];
         var calculator = new AR7778({ length: 1000, semitone_up: false });
         var calculator_right = new AR7778({ length: 1000, semitone_up: true });
         calculator.init((inst) => {
@@ -414,6 +416,21 @@
             'A#5': 'd',
             'B5': 'f',
             'C#5': 'z',
+            'Db3': 'q',
+            'Eb3': 'w',
+            'F3': 'e',
+            'Gb3': 'r',
+            'Ab3': 't',
+            'Bb4': 'y',
+            'B4': 'u',
+            'Db4': 'i',
+            'Eb4': 'o',
+            'F4': 'p',
+            'Gb4': 'a',
+            'Ab4': 's',
+            'Bb5': 'd',
+            'B5': 'f',
+            'Db5': 'z',
         };
         var onplaying = {};
         document.querySelector('.calculators').addEventListener("keydown", (ev) => {
@@ -442,26 +459,34 @@
             reader.readAsArrayBuffer(file);
             reader.onloadend = (ev0) => {
                 player.set_midi_arrayBuffer(reader.result);
-                player.setTempo(60);
+                player.setTempo(80);
                 hand = false;
-                player.parse_and_play_midi((ev1) => {
-                    var button = buttons_by_key[buttons_by_notes[ev1?.noteName]] || buttons_by_key_right[buttons_by_notes[ev1?.noteName]];
-                    if (ev1?.name === "Note on") {
-                        //console.log(ev);
-                        //console.log(button);
-                        if (!button) {
-                            return;
-                        }
-                        if (typeof document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[0]?.click === 'function') {
-                            document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[0].click();
+                player = new MidiPlayer.Player(
+                    (ev1) => {
+                        player.setTempo(80);
+                        console.log(ev1.noteName);
+                        var button = buttons_by_key_right[buttons_by_notes[ev1?.noteName]] || buttons_by_key[buttons_by_notes[ev1?.noteName]];
+                        var thisplayer;
+                        if (ev1?.name === "Note on") {
+                            thisplayer = (!(Object.keys(buttons_by_key_right).includes(button) || ev1?.noteName.includes("#"))) ? calculator : calculator_right;
+                            //console.log(ev);
+                            //console.log(button);
+                            //document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[0].click();
+                            var right = false;
+                            if (ev1.noteName.includes("b")) {
+                                thisplayer = calculator_right;
+                                thisplayer.setConfig({ length: 1000, semitone_up: true });
+                                right = true;
+                            }
+                            thisplayer.playButton(button, document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[right ? 1 : 0]);
                             /* 
                             if (Object.keys(buttons_by_notes).includes(ev1?.noteName)) {
                                 onplaying[ev1.noteName] = mySetInterval(() => {
                                     document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[0].click();
                                 }, calculator.config.length + 100, (myIntervals[Object.keys(myIntervals).length - 1]) + 1);
                             } */
-                        }
-                    }/*  else {
+
+                        }/*  else {
 
                         var buttonname = buttons_by_key[button] || buttons_by_key_right[button];
                         var thisplayer = (Object.keys(buttons_by_key_right).includes(button) ? calculator_right : calculator);
@@ -471,7 +496,10 @@
                             myClearInterval(onplaying[ev1.noteName]);
                         } 
                     }*/
-                });
+
+                    });
+                player.loadArrayBuffer(reader.result);
+                //player.parse_and_play_midi();
                 player.play();
             }
 
