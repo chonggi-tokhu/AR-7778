@@ -20,14 +20,14 @@ AR7778.prototype = {
         });
     },
     playNote(notename) {
-        var a = this.instrument.play(notename, 0, { duration: this.config.length });
+        var a = this.instrument.play(notename, 0, { duration: this.config.length - 100 });
         this.currKeys[notename] = a;
     },
     stopNote(notename) {
         this.instrument.stop(0, [this.currKeys[notename]]);
         this.currKeys[notename] = null;
     },
-    playButton(buttonidx, el) {
+    playButton(buttonidx, el, hand) {
         var notes = (this.config.semitone_up ? this.notes1 : this.notes0);
         //console.log((this.config.semitone_up ? this.notes1 : this.notes0));
         //console.log(buttonidx);
@@ -39,11 +39,26 @@ AR7778.prototype = {
             el.classList.add("highlight");
         }
         setTimeout(() => {
+            if (!hand) {
+                return; Z
+            }
             this.stopNote(notes[buttonidx]);
             if (el instanceof HTMLElement) {
                 el.classList.remove("highlight");
             }
-        }, this.config.length);
+        }, this.config.length - 100);
+    },
+    stopButton(buttonidx, el) {
+        var notes = (this.config.semitone_up ? this.notes1 : this.notes0);
+        //console.log((this.config.semitone_up ? this.notes1 : this.notes0));
+        //console.log(buttonidx);
+        if (!notes[buttonidx]) {
+            return;
+        }
+        this.stopNote(notes[buttonidx]);
+        if (el instanceof HTMLElement) {
+            el.classList.remove("highlight");
+        }
     },
     setConfig({ length, semitone_up } = { length: null, semitone_up: null }) {
         this.length = length === null ? this.length : length;

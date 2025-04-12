@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICAL CALCULATOR</title>
     <script src="https://chonggi-tokhu.github.io/files/kin_choice/new/ColourgreyShorterCSSJS-0.0.1.js"></script>
+    <script src="./midi_reader.js"></script>
+    <script src="./parsed_midi_to_json.js"></script>
     <script src="./player.js"></script>
     <script src="./musical-calculator.js"></script>
+    <script
+        src="https://chonggi-tokhu.github.io/svg_to_video/google_translate_meme_maker/ColourgreyShorterCSSJS.js"></script>
+    <link rel="stylesheet"
+        href="https://chonggi-tokhu.github.io/svg_to_video/google_translate_meme_maker/ColourgreyShorter.css">
     <style>
         .musical-calculator {
             height: 14em;
@@ -47,11 +53,25 @@
             margin-left: 1rem;
             margin-top: 1em;
         }
+
+        .highlight {
+            border: 1px solid #000000;
+            border-radius: 8vmax;
+            min-width: 2rem;
+            display: block;
+            margin-top: 0.5em;
+            text-align: center;
+            background: #557799 !important;
+            color: #ffffff !important
+        }
     </style>
 </head>
 
 <body>
     <div class="body">
+        <div class="input-group">
+            <input type="file" id="myfile"> <label for="myfile">연주</label>
+        </div>
         <div class="calculators">
             <!-- <table class="musical-calculator">
             <tbody>
@@ -300,16 +320,17 @@
         document.addEventListener("DOMContentLoaded", (ev) => {
             cgrcssjs.styleAll();
         });
+        var hand = true;
         var AR7778 = window['AR7778'];
-        var calculator = new AR7778({ length: 2, semitone_up: false });
-        var calculator_right = new AR7778({ length: 2, semitone_up: true });
+        var calculator = new AR7778({ length: 1000, semitone_up: false });
+        var calculator_right = new AR7778({ length: 1000, semitone_up: true });
         calculator.init((inst) => {
             document.querySelectorAll(`#musical-calculator-left .calc-button span`).forEach((el, idx, parel) => {
                 el.addEventListener("click", (ev) => {
-                    console.log(el.getAttribute("data-button-idx"));
-                    calculator.playButton(Number(el.getAttribute("data-button-idx")));
+                    //console.log(el.getAttribute("data-button-idx"));
+                    calculator.playButton(Number(el.getAttribute("data-button-idx")), el, hand);
                 });
-                console.log(el);
+                //console.log(el);
             });
 
         });
@@ -317,10 +338,10 @@
 
             document.querySelectorAll(`#musical-calculator-right .calc-button span`).forEach((el, idx, parel) => {
                 el.addEventListener("click", (ev) => {
-                    console.log(el.getAttribute("data-button-idx"));
-                    calculator_right.playButton(Number(el.getAttribute("data-button-idx")));
+                    //console.log(el.getAttribute("data-button-idx"));
+                    calculator_right.playButton(Number(el.getAttribute("data-button-idx")), el, hand);
                 });
-                console.log(el);
+                //console.log(el);
             });
         });
         var buttons_by_key = {
@@ -362,6 +383,39 @@
             'x': '.',
             'c': 'CE',
         };
+        var buttons_by_notes = {
+            'C3': '0',
+            'D3': '1',
+            'E3': '2',
+            'F3': '3',
+            'G3': '4',
+            'A4': '5',
+            'B4': '6',
+            'C4': '7',
+            'D4': '8',
+            'E4': '9',
+            'F4': '+',
+            'G4': '-',
+            'A5': '/',
+            'B5': '*',
+            'C5': '=',
+            'C#3': 'q',
+            'D#3': 'w',
+            'F3': 'e',
+            'F#3': 'r',
+            'G#3': 't',
+            'A#4': 'y',
+            'B4': 'u',
+            'C#4': 'i',
+            'D#4': 'o',
+            'F4': 'p',
+            'F#4': 'a',
+            'G#4': 's',
+            'A#5': 'd',
+            'B5': 'f',
+            'C#5': 'z',
+        };
+        var onplaying = {};
         document.querySelector('.calculators').addEventListener("keydown", (ev) => {
             var button = buttons_by_key[ev.key] || buttons_by_key_right[ev.key];
             var el = (Object.keys(buttons_by_key_right).includes(ev.key) ? document.querySelector('#musical-calculator-right') : document.querySelector('#musical-calculator-left')).getElementsByAttrValue("data-button-key", button)[0];
@@ -369,6 +423,58 @@
                 return;
             }
             el.click();
+        });
+        var player = new midi_player();
+        var myIntervals = { 0: false };
+        function mySetInterval(cbfunc, interval, id) {
+            if (!myIntervals[id]) { return id; }
+            if (myIntervals[id] && typeof cbfunc === 'function') {
+                setTimeout(() => { cbfunc(); mySetInterval(cbfunc, interval, id); }, interval);
+            }
+            return id;
+        }
+        function myClearInterval(id) {
+            myIntervals[id] = false;
+        }
+        document.getElementById("myfile").addEventListener("change", (ev) => {
+            var file = ev.target.files[0];
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onloadend = (ev0) => {
+                player.set_midi_arrayBuffer(reader.result);
+                player.setTempo(60);
+                hand = false;
+                player.parse_and_play_midi((ev1) => {
+                    var button = buttons_by_key[buttons_by_notes[ev1?.noteName]] || buttons_by_key_right[buttons_by_notes[ev1?.noteName]];
+                    if (ev1?.name === "Note on") {
+                        //console.log(ev);
+                        //console.log(button);
+                        if (!button) {
+                            return;
+                        }
+                        if (typeof document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[0]?.click === 'function') {
+                            document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[0].click();
+                            /* 
+                            if (Object.keys(buttons_by_notes).includes(ev1?.noteName)) {
+                                onplaying[ev1.noteName] = mySetInterval(() => {
+                                    document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[0].click();
+                                }, calculator.config.length + 100, (myIntervals[Object.keys(myIntervals).length - 1]) + 1);
+                            } */
+                        }
+                    }/*  else {
+
+                        var buttonname = buttons_by_key[button] || buttons_by_key_right[button];
+                        var thisplayer = (Object.keys(buttons_by_key_right).includes(button) ? calculator_right : calculator);
+                        thisplayer.stopButton(button, document.querySelector('.calculators span[data-button-key="' + button + '"]'));
+                        
+                        if (Object.keys(buttons_by_notes).includes(ev1?.noteName) && (typeof onplaying[ev1.noteName] === "number")) {
+                            myClearInterval(onplaying[ev1.noteName]);
+                        } 
+                    }*/
+                });
+                player.play();
+            }
+
         });
         cgrcssjs.styleAll();
     </script>
