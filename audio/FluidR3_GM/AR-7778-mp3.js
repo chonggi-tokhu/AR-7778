@@ -26,16 +26,5 @@ MIDI.Soundfont.acoustic_grand_piano = {
     "A5": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/A5.wav",
     "As5": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/As5.wav",
     "B5": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/B5.wav",
-    "C6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/C6.wav",
-    "Cs6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/Cs6.wav",
-    "D6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/D6.wav",
-    "Ds6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/Ds6.wav",
-    "E6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/E6.wav",
-    "F6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/F6.wav",
-    "Fs6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/Fs6.wav",
-    "G6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/G6.wav",
-    "Gs6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/Gs6.wav",
-    "A6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/A6.wav",
-    "As6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/As6.wav",
-    "B6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/B6.wav",
+    "C6": "https://chonggi-tokhu.github.io/AR-7778/audio/FluidR3_GM/AR-7778/C6.wav"
 };
