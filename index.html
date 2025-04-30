@@ -486,7 +486,9 @@
                                 }, calculator.config.length + 100, (myIntervals[Object.keys(myIntervals).length - 1]) + 1);
                             } */
 
-                        }/*  else {
+                        } else if (ev1?.name==="Note off") {
+                            thisplayer.stopButton(button, document.querySelector('.calculators span[data-button-key="' + button + '"]'));
+                        } /*  else {
 
                         var buttonname = buttons_by_key[button] || buttons_by_key_right[button];
                         var thisplayer = (Object.keys(buttons_by_key_right).includes(button) ? calculator_right : calculator);
