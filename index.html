@@ -475,7 +475,7 @@
                             var right = false;
                             if (ev1.noteName.includes("b")) {
                                 thisplayer = calculator_right;
-                                thisplayer.setConfig({ length: 1000, semitone_up: true });
+                                thisplayer.setConfig({ length: 800, semitone_up: true });
                                 right = true;
                             }
                             thisplayer.playButton(button, document.querySelectorAll('.calculators span[data-button-key="' + button + '"]')[right ? 1 : 0]);
