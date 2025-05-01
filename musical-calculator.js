@@ -1,6 +1,6 @@
 
 var AudioContext = window.AudioContext || window.webkitAudioContext || false;
-var ac = new AudioContext || new webkitAudioContext;
+var ac = new AudioContext() || new webkitAudioContext();
 var Soundfont = window['Soundfont'];
 function AR7778({ length, semitone_up } = { length: 2000, semitone_up: false }) {
     //this.notes = ["A4", "As4", "A5", "As5", "A6", "As6", "B4", "B5", "B6", "C4", "Cs4", "C5", "Cs5", "C6", "Cs6", "D4", "Ds4", "D5", "Ds5", "D6", "Ds6", "E4", "E5", "E6", "F4", "Fs4", "F5", "Fs5", "F6", "Fs6", "G4", "Gs4", "G5", "Gs5", "G6", "Gs6"];
